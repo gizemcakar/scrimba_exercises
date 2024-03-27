@@ -34,4 +34,36 @@ function highlightLeader(){
 function newGame(){
     homeScore.innerHTML =0
     guessScore.innerHTML =0
+    time = 0;
+    period = 0;
+    document.getElementById("period").innerHTML = null;
+    document.getElementById("timer").innerHTML = null;
+    stopTimer();
+}
+
+var timerInterval;
+var time = 0;
+var period = 0;
+function myTimer() {
+    time--; 
+    document.getElementById("timer").innerHTML = time;
+    if(time === 0){
+        period++;
+        document.getElementById("period").innerHTML = period;
+        stopTimer();
+    }
+}
+
+function startTimer(){
+    if(time === 0){
+        time = 12;
+        document.getElementById("timer").innerHTML = time;
+        timerInterval = setInterval(myTimer, 1000);
+        document.getElementById("period").innerHTML = period + 1;
+    }
+}
+
+function stopTimer() { 
+   clearInterval(timerInterval);
+   timerInterval = null;
 }
